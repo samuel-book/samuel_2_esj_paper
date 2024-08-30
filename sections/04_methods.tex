@@ -1,0 +1,125 @@
+\section{Methods}
+
+\subsection{Emergency stroke pathway under study}
+
+This project focused on use of thrombolysis and outcomes (with and without thrombolysis) at discharge from in-patient care. Data for the quantitative models came from the national stroke registry for England, Wales and Northern Ireland, the Sentinel Stroke National Audit Programme (SSNAP), and included these stages of the emergency stroke pathway:
+
+\begin{itemize}
+
+    \item \textit{Stroke onset}: When known, SSNAP records the time of stroke onset.
+
+    \item \textit{Convey to hospital}: SSNAP records the time of arrival at hospital, and records whether the arrival was by ambulance or not. For some patients there is a breakdown of ambulance response times (time of call, time of ambulance arrival on scene, time of departure from scene, time of arrival at hospital).
+
+    \item \textit{Gather info \& determine stroke onset time}: SSNAP records whether onset time was determined, and whether it was considered to be known \textit{precisely} or was \textit{a best estimate}. Other patient information is gathered (such as recording age, sex, the NIH Stroke Scale scores, estimation of pre-stroke disability, key medications being taken by the patient). This clinical information may be taken prior to and/or after head imaging, but we restricted information for modelling treatment decisions to that information available at the time of the decision.
+
+    \item \textit{Head scan}: Head imaging is essential to confirm stroke, and determine stroke type (ischaemic or hemorrhagic). SSNAP records whether head imaging was performed, and the time of imaging. For modelling work described here we did not request, and do not use, the mode of imaging; all modes should provide confirmation of stroke and should distinguish ischaemic and hemorrhagic stroke. 
+
+    \item \textit{Decision to treat}: We model each stroke teams patterns of who they decide to treat with thrombolysis.
+
+    \item \textit{Thrombolysis (IVT)}: SSNAP records whether thrombolysis was given and the time of thrombolysis.
+
+    \item \textit{Disability at discharge}: SSNAP records modified Rankin Scale (mRS) at discharge from inpatient care. For about third of patients there is a follow-up measure at 6 months. In our modelling we use disability at discharge as (1) data is essentially complete, and (2) this is the outcome most closely tied with the effect of thrombolysis, which is our focus of study in the described project.
+
+\end{itemize}
+
+\subsection{Qualitative research}
+
+\subsubsection{Qualitative research: Data}
+
+We used focussed observations, semi-structured interviews and documentary analysis, to examine perceptions of thrombolysis, SSNAP, and machine learning. The NASSS (non-adoption, abandonment, scale-up, spread, sustainability) framework \cite{greenhalgh_beyond_2017} was used as a sensitising device to help us understand socio-technical factors likely to affect adoption and scale-up of SAMueL-2 technology.
+
+Semi-structured interviews were conducted with 20 participants from the three observation sites and five key informants (senior clinicians/managers involved in stroke initiatives) based at other sites. The number of participants by role was:
+
+\begin{itemize}
+
+    \item \textit{Consultant}: 11 stroke, 3 emergency department (ED), 1 care of the elderly
+
+    \item \textit{Associate specialist doctor (ED)}: 1 ED
+
+    \item \textit{Registrar}: 1 stroke, 1 ED 
+
+    \item \textit{Stroke assessor \& nurse}: 2
+
+    \item \textit{Stroke nurse}: 1
+    
+    \item \textit{Advanced clinical practitioner (stroke)}: 1
+
+    \item \textit{Stroke unit administrator}: 1
+
+    \item \textit{Information technology (IT) co-ordinator (stroke)}: 1
+
+    \item \textit{Integrated Stroke Delivery Network (ISDN) manager}: 1
+    
+\end{itemize}
+
+Observation of healthcare professionals and work practices involved in the acute stroke pathway in three NHS Trusts (acute hospitals) in England (hereafter referred to as Sites A, B and C) was conducted. We used SSNAP data to purposefully select hospitals with low rates of thrombolysis and ensured they had differing stroke pathways and were geographically dispersed. 184 hours of focussed observation across the three sites comprising a variety of day/evening/night and weekend shifts was conducted, observing stroke care as well as clinical governance and multi-disciplinary team stroke review and SSNAP review meetings. Additionally, observation of online meetings of ISDNs and other organisations with strategic overview of stroke services in the NHS took place, with a focus on thrombolysis. 
+
+A third source of data was documents: we collected Trust-level documents (such as thrombolysis protocols and quality improvement, QI, initiative documentation); policy and strategy documents at ISDN level; computer modellers’ presentations to stakeholders (clinicians, senior managers, policymakers); modelling team summaries of feedback from stakeholders.
+
+\subsubsection{Qualitative research: Ethics}
+
+For the qualitative study, NHS Health Research Authority (HRA) \& Health and Care Research Wales (HCRW) approval was provided by the Essex Research Ethics Committee in August 2023 (IRAS 322303; REC reference 23/EE/0124).
+
+\subsection{Quantitative research}
+
+\subsubsection{Quantitative research: Data for thrombolysis use}
+
+Data was extracted from the Sentinel Stroke National Audit Programme (SSNAP), the national stroke registry for England, Wales and Northern Ireland, for all patients with an out-of-hospital stroke onset for the full calendar years of 2016-2021. The registry contains  patients admitted to all acutely-admitting hospitals, with a case ascertainment of over 90\% when compared to administrative data (Hospital Episode Statistics).
+
+For the The total number of patients was 360,381, of whom 38.5\% arrived within 4 hours of known stroke onset. Of those arriving within 4 hours of known stroke onset 90.4\% arrived by ambulance (71.6\% of those not arriving within 4 hours of known stroke onset arrived by ambulance).
+
+The following data fields from SSNAP were used in the modelling:
+
+\begin{itemize}
+
+% Coding 0-1 for Yes/No not needed here
+
+    \item \textit{Stroke team}: Stroke team attended (hospital identifier).
+
+    \item \textit{Age}: Age (as midpoint of 5 year age bands).
+
+    \item \textit{Sex}: Sex of patient. % Keep as 'sex'; 'gender' more about psychological identity/alignment than physical/biological attributes
+
+    \item \textit{Atrial fibrillation diagnosis}: Patient had a diagnosis of atrial fibrillation, either on arrival or diagnosed during admission.
+
+    \item \textit{Use of atrial fibrillation (AF) anticoagulants}: Use of prior anticoagulant for atrial fibrillation.
+
+    \item \textit{Onset known}: Whether onset was known, and if known whether it was considered to be known precisely or was a best estimate.
+
+    \item \textit{Onset during sleep}: Did stroke occur in sleep?
+
+    \item \textit{Onset-to-arrival time}: Time from onset of stroke to arrival at hospital (minutes), when known.
+
+    \item \textit{Prior disability level}: Estimated mRS score prior to stroke.
+
+    \item \textit{Stroke type}: Infarction/haemorrhage.
+
+    \item \textit{Stroke severity}: National Institutes of Health Stroke Scale (NIHSS) score on arrival.
+
+    \item \textit{Arrival-to-scan time}: Time from arrival at hospital to scan (minutes), when known.
+
+    \item \textit{Scan-to-thrombolysis time}: Time from arrival at hospital to scan to treatment with thrombolysis (minutes), when given.
+
+    \item \textit{Disability on discharge}: mRS (0-6) on discharge, includes death (mRS 6) during admission.
+    
+\end{itemize}
+
+\subsubsection{Quantitative research: Data for patient clinical outcome}
+
+
+
+\subsubsection{Quantitative research: Predicting thrombolysis use}
+
+Decision-making (choice of thrombolysis) were modelled with machine learning, learning which patients would likely be given thrombolysis at each stroke team.
+
+
+\subsubsection{Quantitative research: Predicting patient clinical outcome}
+
+Patient outcomes were modelled with machine learning, predicting their disability at discharge.
+
+
+\subsubsection{Quantitative research: Ethics}
+
+For modelling, as we were using anonymised secondary data, collected for national audit, individual consent is not required. SSNAP has approval under section 251 of the NHS Health and Social Care Act (2006) to collect patient level data on the first six months of patient care (ECC 6- 02(FT3)/2012), without requiring individual patient consent. Access to SSNAP data is managed by the UK Healthcare Quality Improvement Partnership (HQIP), with this project being approved by HQIP (HQIP303). More information on the use of patient data by SSNAP can be found at \url{https://www.strokeaudit.org/ SupportFiles/Documents/Patient-area-documents/Fair-processingstatement-for-patients-v7-0.aspx}
+
+As we are using anonymised secondary data, collected for national audit, used for service evaluation and improvement, no ethical approval is required (confirmed using the NHS Health Research Authority decision aid: https://www.hra-decisiontools.org.uk/ethics/).

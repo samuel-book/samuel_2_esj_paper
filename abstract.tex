@@ -1,0 +1,126 @@
+\documentclass{article}
+
+% Formatting
+\DeclareUnicodeCharacter{2060}{\nolinebreak} % Prevent unicode (U+2060) error on local complile
+\frenchspacing % No double spacing between sentences
+\hbadness=1000000 % Turn off \hbox badness warnings
+\linespread{1.2} % Set linespace
+
+
+% Packages
+\usepackage[a4paper, left=1.5cm, right=1.5cm, top=1.2cm, bottom=1.5cm]{geometry}
+\usepackage{authblk} % For author formatting
+\usepackage{caption} % For figure and table captions
+\usepackage{cclicenses} % For creative commons license
+\usepackage{float} % To force figure location after text
+\usepackage{graphicx} % Adds more functionality to graphics for inclusion of figures
+\usepackage{lscape} % For landscape pages
+\usepackage{lineno} % Allows use of \linenumbers to add line numbers 
+\usepackage{lmodern} % A scalable font - avoids erros due to non-sclabale fonts
+\usepackage{longtable,booktabs}  % For tables
+\usepackage{markdown} % Allow use of markdown syntax
+\usepackage{microtype} % 'Improved' typesetting
+\usepackage[nottoc,numbib]{tocbibind} % Add references to table of contents
+\usepackage{parskip} % Adds white space between paragraphs
+\usepackage{pdflscape} % To create landscape pages that show as landscape in PDF viewer
+\usepackage{placeins} % to use \FloatBarrier where want a hard break between content (to force and order of text and figures
+\usepackage{ragged2e} % Better right ragged edges (allows hyphenation)
+\usepackage{subcaption} % Allows use of subfigures
+\usepackage[super]{natbib} % Citations using superscript
+\usepackage{titlesec} % For title spacing
+\usepackage[toc,page]{appendix}
+\usepackage{url} % Tidy web links
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{xcolor} % For coloured text
+\usepackage{xurl} % For url but with more flexible linebreaking
+
+
+% Choose your own colour
+\usepackage{color}
+\newcommand{\mjanote}[2][\textcolor{red}{\dagger}]{\textcolor{red}{$#1$}\marginpar{\color{red}\raggedright\tiny$#1$ #2}}
+\newcommand{\mjaFIXME}[1]{\textcolor{red}{[\textbf{FIXME} \textsl{#1}]}}
+\newcommand{\kpnote}[2][\textcolor{magenta}{\dagger}]{\textcolor{magenta}{$#1$}\marginpar{\color{magenta}\raggedright\tiny$#1$ #2}}
+\newcommand{\kpFIXME}[1]{\textcolor{magenta}{[\textbf{FIXME} \textsl{#1}]}}
+
+
+% Info on wordcounts:
+% https://www.overleaf.com/learn/how-to/Is_there_a_way_to_run_a_word_count_that_doesn%27t_include_LaTeX_commands%3F
+
+% To include refs in word count:
+%TC:incbib
+
+\newcommand{\detailtexcount}[1]{%
+  \immediate\write18{texcount -merge -sum -q #1.tex output.bbl > #1.wcdetail }%
+  \verbatiminput{#1.wcdetail}%
+}
+
+% Count tables in wordcount
+
+%TC:group table 0 1
+%TC:group tabular 1 1
+
+\begin{document}
+
+
+
+\section*{\centering{SAMueL-2: Stroke Audit Machine Learning}}
+
+\section{Abstract}
+
+\textbf{Background}
+
+Use of thrombolysis to treat emergency stroke patients varies considerably between hospitals. Previous work has shown that the majority of this variation comes from between-hospital decision-making on which patients should receive thrombolysis.
+
+\textbf{Key objectives} % Probably need reducing for abstract
+
+\begin{itemize}
+
+    \item Use qualitative methodologies to ask \textit{"What should a machine-learning model based on national audit data look like, do, and deliver, to optimise improvement and reduce unwarranted variation, in thrombolysis?"}
+
+    \item Use explainable machine learning to investigate what affects whether a patient receives thrombolysis or not, and what affect that thrombolysis has on patient outcome. Use \textit{prototype patients} to further illustrate the relationship between patient features, expected use of thrombolysis, and expected patient outcomes.
+    
+    \item Incorporate health economics in patient outcome modelling.
+
+    \item Model patient flow from stroke onset to disability at discharge. 
+
+\end{itemize}
+
+
+\textbf{Methods}
+
+\begin{itemize}
+
+    \item \textbf{Co-production and qualitative research} used observations, meetings, semi-structured interviews, and review of NHS documentation.
+
+    \item \textbf{Thrombolysis decisions and patient outcomes} were predicted using XGBoost machine learning models, employing Shapley values to explain individual feature contributions.
+
+    \item Scenarios of \textbf{patient flow through the emergency stroke pathway} was modelled with Monte-Carlo simulation, and a mathematical model of outcome based on clinical trial results.
+    
+\end{itemize}
+
+\textbf{Results}
+
+\begin{itemize}
+
+    \item \textbf{Qualitative insights} found optimism among participants about using SAMueL-2 technology to standardise thrombolysis practices, being especially beneficial for less experienced clinicians for training and case review. It identified the importance to reassure adopters about the integrity of modelling based on SSNAP, and that emergency department physicians have less confidence about the evidence base for thrombolysis.
+    
+    \item \textbf{Key factors affecting thrombolysis use} in ischaemic stroke are arrival-to-scan time, stroke severity, pre-stroke disability, and the hospital attended. After adjusting for other patient features, a 13-fold variability in thrombolysis odds was observed between-hospitals.
+    
+    \item \textbf{Key factors affecting outcome} after stroke are pre-stroke disability, stroke severity, age, and use/time of thrombolysis. Machine learning demonstrated that thrombolysis was having at least the expected clinical benefit as predicted by the clinical trials. Thrombolysis was predicted to add an average of 0.26 QALYs per patient treated. Hospitals with higher thrombolysis use are predicted to be generating better patient outcomes.
+    
+    \item Combining \textbf{changes to processes and decision-making} could increase thrombolysis use from 13\% to 20\% among patients arriving by ambulance. Accelerating pathway speed positively influenced outcomes more than thrombolysis rates. A web tool was developed for stroke team-level data interrogation.
+
+    \end{itemize}
+
+\textbf{Conclusions}
+
+Using large-scale observational data and machine learning, thrombolysis, in real world use, was found to have at least as much benefit as predicted by the thrombolysis clinical trial meta-analysis. Both qualitative research and machine learning revealed significant between-hospital variation in which patients receive thrombolysis, which is leading to significant between-hospital variation in thrombolysis use and outcomes. Machine learning revealed that who will benefit from thrombolysis is patient-specific, and not easily captured in a simple medicine use label, but we found overall that stroke teams with a higher willingness to use thrombolysis are predicted to be generating better patient outcomes at a population level.
+
+\input{sections/05_paper_overview}
+
+\bibliographystyle{naturemag}
+\bibliography{references}
+
+
+\end{document}
