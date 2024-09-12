@@ -12,9 +12,9 @@ This work combined four models:
 
 \begin{enumerate}
 
-    \item \textit{Thrombolysis decision model}: An XGBoost machine learning model \cite{chen_xgboost_2016} was used to learn which patients would receive thrombolysis at each stroke team. Stroke team SHAP values were used to identify 25 \textit{benchmark teams} most likely to use thrombolysis. For each patient a \textit{benchmark decision} was predicted, which was the majority vote of the expected decision for that patient at the 25 \textit{benchmark teams}. This is based on the model as described in section \ref{sec:paper_2}.
+    \item \textit{Thrombolysis decision model}: An XGBoost machine learning model \cite{chen_xgboost_2016} was used to learn which patients would receive thrombolysis at each stroke team. Stroke team SHAP values were used to identify 25 \textit{benchmark teams} most likely to use thrombolysis. For each patient a \textit{benchmark decision} was predicted, which was the majority vote of the expected decision for that patient at the 25 \textit{benchmark teams}. This is based on the model as described in section %\ref{sec:paper_2}.
 
-    \item \textit{Outcome model}: A XGBoost machine learning model was used to predict outcome (mRS probability distribution) for each patient. This is based on the model as described in section \ref{sec:paper_4}.
+    \item \textit{Outcome model}: A XGBoost machine learning model was used to predict outcome (mRS probability distribution) for each patient. This is based on the model as described in section %\ref{sec:paper_4}.
 
     \item \textit{Patient pathway flow}: Monte-Carlo simulation was used to model the flow of patients through the emergency stroke pathway at each hospital, taking into account both average speeds and variation. When examining the effect of improving patient flow, clinical outcome is predicted as the number of \textit{excellent outcomes} (mRS 0-1) per 1,000 admissions using a previously described mathematical model \cite{allen_estimation_2020}.
 
@@ -143,28 +143,27 @@ Across the study population, by combining pathway improvements, thrombolysis use
 
 Table \ref{tab:health_econ} shows the modelled health economics of thrombolysis use, comparing actual use of thrombolysis with \textit{benchmark} thrombolysis use. The effect of thrombolysis was estimated by predicting the outcomes with and without thrombolysis for the two groups (those that actually received thrombolysis, and those predicted to receive thrombolysis using \textit{benchmark} decisions). Benchmark decisions maintain the benefit of using thrombolysis, but extend that benefit to more patients. This extended benefit was not at the cost of any predicted increase in the worst outcomes (mRS 5-6). The extended benefit led to more QALYs added across the population by treatment, and more predicted savings to NHS healthcare costs.
 
-\begin{table}[!h]
+\begin{table}[!ht]
 \small
 \caption{Health economic analysis: Analysis for  populations based on predicted benefit (or dis-benefit) of thrombolysis. The effect of thrombolysis was estimated by predicting the outcomes with and without thrombolysis for the two groups (those that actually received thrombolysis, and those predicted to receive thrombolysis using \textit{benchmark} decisions). The analysis compares the populations currently treated, or the population that would be treated using \textit{benchmark} decisions (the majority vote of the predicted choice of the the 25 stroke teams most likely to use thrombolysis). Results are shown for (a) the treated populations, and (b) adjusted for 1,000 emergency stroke admissions }
 \label{tab:main}
 
-\begin{subtable}{1\textwidth}
-\centering
-\caption{Analysis of the predicted effect of thrombolysis in two population subgroups: 1) those patients who actually received thrombolysis, or 2) those patients where the \textit{benchmark decision} would be to use thrombolysis. For each populations the outcomes with and without thrombolysis were predicted.}
-\begin{tabular}{p{2.0cm} p{1.5cm} p{1.2cm} p{1.3cm} p{1.5cm} p{1.3cm} p{1.4cm} p{1.3cm} p{1.3cm}}
-\toprule
-Modelled population & \raggedright Modelled treatment & Death & Survival (median years) & Care years (median) & QALYs & \raggedright Discounted cost per patient & Proportion mRS 0-2 & Proportion mRS 5-6\tabularnewline
-\midrule
-Actual use & Untreated & 17.1\% & 7.60 & 0.28 & 5.020 & £20,370 & 47.1\% & 23.9\%\tabularnewline
-& Treated & 14.2\% & 7.91 & 0.25 & 5.258 & £19,806 & 53.9\% & 19.3\%\tabularnewline
-& Difference & -2.9\% & 0.31 & -0.03 & 0.238 & -£565 & 6.8\% & -4.7\%\tabularnewline
-\midrule
-Benchmark & Untreated & 17.4\% & 7.63 & 0.28 & 5.036 & £20,388 & 46.5\% & 24.1\%\tabularnewline
-& Treated & 14.4\% & 7.93 & 0.25 & 5.269 & £19,784 & 53.4\% & 19.4\%\tabularnewline
-& Difference & -3.0\% & 0.30 & -0.03 & 0.234 & -£603 & 6.9\% & -4.8\%\tabularnewline
-
-\end{tabular}
-\end{subtable}
+%\begin{subtable}{1\textwidth}
+%\centering
+%\caption{Analysis of the predicted effect of thrombolysis in two population subgroups: 1) those patients who actually received thrombolysis, or 2) those patients where the \textit{benchmark decision} would be to use thrombolysis. For each populations the outcomes with and without thrombolysis were predicted.}
+%\begin{tabular}{p{2.0cm} p{1.5cm} p{1.2cm} p{1.3cm} p{1.5cm} p{1.3cm} p{1.4cm} p{1.3cm} p{1.3cm}}
+%\toprule
+%Modelled population & \raggedright Modelled treatment & Death & Survival (median years) & Care years (median) & QALYs & \raggedright Discounted cost per patient & Proportion mRS 0-2 & Proportion mRS 5-6\tabularnewline
+%\midrule
+%Actual use & Untreated & 17.1\% & 7.60 & 0.28 & 5.020 & £20,370 & 47.1\% & 23.9\%\tabularnewline
+%& Treated & 14.2\% & 7.91 & 0.25 & 5.258 & £19,806 & 53.9\% & 19.3\%\tabularnewline
+%& Difference & -2.9\% & 0.31 & -0.03 & 0.238 & -£565 & 6.8\% & -4.7\%\tabularnewline
+%\midrule
+%Benchmark & Untreated & 17.4\% & 7.63 & 0.28 & 5.036 & £20,388 & 46.5\% & 24.1\%\tabularnewline
+%& Treated & 14.4\% & 7.93 & 0.25 & 5.269 & £19,784 & 53.4\% & 19.4\%\tabularnewline
+%& Difference & -3.0\% & 0.30 & -0.03 & 0.234 & -£603 & 6.9\% & -4.8\%\tabularnewline
+%\end{tabular}
+%\end{subtable}
 
 \vspace{3mm}
 

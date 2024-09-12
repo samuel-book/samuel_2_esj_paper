@@ -11,11 +11,9 @@ Use of thrombolysis to treat emergency stroke patients varies considerably betwe
 
     \item Use qualitative methodologies to ask \textit{"What should a machine-learning model based on national audit data look like, do, and deliver, to optimise improvement and reduce unwarranted variation, in thrombolysis?"}
 
-    \item Use explainable machine learning to investigate what affects whether a patient receives thrombolysis or not, and what affect that thrombolysis has on patient outcome. Use \textit{prototype patients} to further illustrate the relationship between patient features, expected use of thrombolysis, and expected patient outcomes.
-    
-    \item Incorporate health economics in patient outcome modelling.
+    \item Use explainable machine learning to investigate what affects whether a patient receives thrombolysis or not, and what affect that thrombolysis has on patient outcome.
 
-    \item Model patient flow from stroke onset to disability at discharge. 
+    \item Model patient flow from stroke onset to disability at discharge. Use \textit{prototype patients} to illustrate the variation in predicted thrombolysis rates across stroke teams.
 
 \end{itemize}
 
@@ -26,6 +24,10 @@ Use of thrombolysis to treat emergency stroke patients varies considerably betwe
     \item \textbf{Co-production and qualitative research} used observations, meetings, semi-structured interviews, and review of NHS documentation.
 
     \item \textbf{Thrombolysis decisions and patient outcomes} were predicted using XGBoost machine learning models, employing Shapley values to explain individual feature contributions.
+
+    \item \textbf{Patient flow was modelled using discrete event simulation.    
+
+    \item \textbf{A web tool} was developed for stroke team-level data interrogation.
    
 \end{itemize}
 
@@ -35,11 +37,13 @@ Use of thrombolysis to treat emergency stroke patients varies considerably betwe
 
     \item \textbf{Qualitative insights} found optimism among participants about using SAMueL-2 technology to standardise thrombolysis practices, being especially beneficial for less experienced clinicians for training and case review. It identified the importance to reassure adopters about the integrity of modelling based on SSNAP, and that emergency department physicians have less confidence about the evidence base for thrombolysis.
     
-    \item \textbf{Key factors affecting thrombolysis use} in ischaemic stroke are arrival-to-scan time, stroke severity, pre-stroke disability, and the hospital attended. After adjusting for other patient features, a 13-fold variability in thrombolysis odds was observed between-hospitals.
+%    \item \textbf{Key factors affecting thrombolysis use} in ischaemic stroke are arrival-to-scan time, stroke severity, pre-stroke disability, and the hospital attended. After adjusting for other patient features, a 13-fold variability in thrombolysis odds was observed between-hospitals.
     
     \item \textbf{Key factors affecting outcome} after stroke are pre-stroke disability, stroke severity, age, and use/time of thrombolysis. Machine learning demonstrated that thrombolysis was having at least the expected clinical benefit as predicted by the clinical trials. Thrombolysis was predicted to add an average of 0.26 QALYs per patient treated. Hospitals with higher thrombolysis use are predicted to be generating better patient outcomes.
     
-%    \item Combining \textbf{changes to processes and decision-making} could increase thrombolysis use from 13\% to 20\% among patients arriving by ambulance. Accelerating pathway speed positively influenced outcomes more than thrombolysis rates. A web tool was developed for stroke team-level data interrogation.
+    \item \textbf{Hospitals trade-off} between the sensitivity towards giving treatment (not missing patients who would benefit from treatment) and specificity towards giving treatment (giving thrombolysis to patients who would likely not benefit from it).
+
+    \item \texfbf{Who will benefit} from thrombolysis is patient-specific, and not easily captured in a simple medicine use label.
 
     \end{itemize}
 
@@ -56,6 +60,6 @@ Using large-scale observational data and machine learning, thrombolysis, in real
 
 \textbf{What did we not know?} We did not know (1) how the variation in use of thrombolysis was affecting patient outcomes, (2) what it was about the patients that doctors considered when making decisions, (3) what most affected patient outcome, (4) what doctors would think of using \textit{machine learning} (where a computer learns patterns in data) to help understand answers to these questions.
 
-\textbf{What did we do?} We used machine learning to learn which patients different hospitals would give thrombolysis to, and to learn which patients would likely have a better outcome if this treatment was used. \textit{ADD QUALITATIVE}
+\textbf{What did we do?} We used machine learning to learn which patients different hospitals would give thrombolysis to, and to learn which patients would likely have a better outcome if this treatment was used. We used qualitative research to examine clinical perceptions of thrombolysis, the national stroke dataset, and machine learning. 
 
 \textbf{What did we find out?} We found out that thrombolysis was at least as effective in real use as clinical trials predicted, and that hospitals choosing to use it more are very likely saving more lives and reducing disability from stroke. We now understand what doctors look at when deciding to use it or not, and what affects patient outcomes. We found that speeding up giving this treatment would increase the number of people who would receive it, and by everyone receiving it sooner would mean they would each benefit more from it. We now understand that hospitals are making a delicate treatment decision between ‘Miss no benefit’ and ‘Do no harm’, and that many factors contribute to making this complex decision correctly. We found that doctors were interested in our work, but they need to be convinced our machine learning is right. We are hopeful that our results will give doctors greater confidence to use this treatment more often, and to always give it as fast as possible.

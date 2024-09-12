@@ -1,125 +1,102 @@
 \section{Methods}
 
-\subsection{Emergency stroke pathway under study}
-
-This project focused on use of thrombolysis and outcomes (with and without thrombolysis) at discharge from in-patient care. Data for the quantitative models came from the national stroke registry for England, Wales and Northern Ireland, the Sentinel Stroke National Audit Programme (SSNAP), and included these stages of the emergency stroke pathway:
-
-\begin{itemize}
-
-    \item \textit{Stroke onset}: When known, SSNAP records the time of stroke onset.
-
-    \item \textit{Convey to hospital}: SSNAP records the time of arrival at hospital, and records whether the arrival was by ambulance or not. For some patients there is a breakdown of ambulance response times (time of call, time of ambulance arrival on scene, time of departure from scene, time of arrival at hospital).
-
-    \item \textit{Gather info \& determine stroke onset time}: SSNAP records whether onset time was determined, and whether it was considered to be known \textit{precisely} or was \textit{a best estimate}. Other patient information is gathered (such as recording age, sex, the NIH Stroke Scale scores, estimation of pre-stroke disability, key medications being taken by the patient). This clinical information may be taken prior to and/or after head imaging, but we restricted information for modelling treatment decisions to that information available at the time of the decision.
-
-    \item \textit{Head scan}: Head imaging is essential to confirm stroke, and determine stroke type (ischaemic or hemorrhagic). SSNAP records whether head imaging was performed, and the time of imaging. For modelling work described here we did not request, and do not use, the mode of imaging; all modes should provide confirmation of stroke and should distinguish ischaemic and hemorrhagic stroke. 
-
-    \item \textit{Decision to treat}: We model each stroke teams patterns of who they decide to treat with thrombolysis.
-
-    \item \textit{Thrombolysis (IVT)}: SSNAP records whether thrombolysis was given and the time of thrombolysis.
-
-    \item \textit{Disability at discharge}: SSNAP records modified Rankin Scale (mRS) at discharge from inpatient care. For about third of patients there is a follow-up measure at 6 months. In our modelling we use disability at discharge as (1) data is essentially complete, and (2) this is the outcome most closely tied with the effect of thrombolysis, which is our focus of study in the described project.
-
-\end{itemize}
-
 \subsection{Qualitative research}
 
-\subsubsection{Qualitative research: Data}
+\subsubsection{Research question}
 
-We used focussed observations, semi-structured interviews and documentary analysis, to examine perceptions of thrombolysis, SSNAP, and machine learning. The NASSS (non-adoption, abandonment, scale-up, spread, sustainability) framework \cite{greenhalgh_beyond_2017} was used as a sensitising device to help us understand socio-technical factors likely to affect adoption and scale-up of SAMueL-2 technology.
+What should a machine-learning model based on SSNAP data look like, do, and deliver if it is to optimise improvement, and reduce unwarranted variation, in thrombolysis? 
+Objectives 1.To generate empirically and theoretically informed knowledge about how thrombolysis is currently delivered, centred on physicians’ views, understandings, and practices.
+Objective 2. To learn more about how stroke physicians’ and staff think and feel about or use SSNAP, and about the use of machine learning in improving clinical practice
 
-Semi-structured interviews were conducted with 20 participants from the three observation sites and five key informants (senior clinicians/managers involved in stroke initiatives) based at other sites. The number of participants by role was:
+\subsubsection{Framework}
+
+The NASSS (non-adoption, abandonment, scale-up, spread, sustainability) framework \cite{greenhalgh_beyond_2017} was used as a sensitising device to help us understand socio-technical factors likely to affect adoption and scale-up of SAMueL-2 technology.
+
+\subsubsection{Recruitment design}
+
+We used focussed observations, semi-structured interviews and documentary analysis, to examine perceptions of thrombolysis, SSNAP, and machine learning. 
+
+Three acute hospitals in England were chosen as observation sites (hereafter referred to as Sites A, B and C) that had: (1) a low thrombolysis rate (identified using SSNAP); (2) a different stroke pathway; and (3) were geographically dispersed. Semi-structured interviews were conducted with 20 participants from the three observation sites and five key informants (senior clinicians/managers involved in stroke initiatives) based at other sites. The number of participants by role was:
 
 \begin{itemize}
-
     \item \textit{Consultant}: 11 stroke, 3 emergency department (ED), 1 care of the elderly
-
     \item \textit{Associate specialist doctor (ED)}: 1 ED
-
     \item \textit{Registrar}: 1 stroke, 1 ED 
-
     \item \textit{Stroke assessor \& nurse}: 2
-
     \item \textit{Stroke nurse}: 1
-    
     \item \textit{Advanced clinical practitioner (stroke)}: 1
-
     \item \textit{Stroke unit administrator}: 1
-
     \item \textit{Information technology (IT) co-ordinator (stroke)}: 1
-
     \item \textit{Integrated Stroke Delivery Network (ISDN) manager}: 1
-    
 \end{itemize}
 
-Observation of healthcare professionals and work practices involved in the acute stroke pathway in three NHS Trusts (acute hospitals) in England (hereafter referred to as Sites A, B and C) was conducted. We used SSNAP data to purposefully select hospitals with low rates of thrombolysis and ensured they had differing stroke pathways and were geographically dispersed. 184 hours of focussed observation across the three sites comprising a variety of day/evening/night and weekend shifts was conducted, observing stroke care as well as clinical governance and multi-disciplinary team stroke review and SSNAP review meetings. Additionally, observation of online meetings of ISDNs and other organisations with strategic overview of stroke services in the NHS took place, with a focus on thrombolysis. 
+184 hours of focussed observation of healthcare professionals and work practices involved in the acute stroke pathway across the three sites was conducted, comprising a variety of day/evening/night and weekend shifts, observing stroke care as well as clinical governance and multi-disciplinary team stroke review and SSNAP review meetings. Additionally, observation of online meetings of ISDNs and other organisations with strategic overview of stroke services in the NHS took place. We also collected Trust-level documents (such as thrombolysis protocols and quality improvement, QI, initiative documentation); policy and strategy documents at ISDN level; computer modellers’ presentations to stakeholders (clinicians, senior managers, policymakers); modelling team summaries of feedback from stakeholders.
 
-A third source of data was documents: we collected Trust-level documents (such as thrombolysis protocols and quality improvement, QI, initiative documentation); policy and strategy documents at ISDN level; computer modellers’ presentations to stakeholders (clinicians, senior managers, policymakers); modelling team summaries of feedback from stakeholders.
-
-\subsubsection{Qualitative research: Ethics}
-
-For the qualitative study, NHS Health Research Authority (HRA) \& Health and Care Research Wales (HCRW) approval was provided by the Essex Research Ethics Committee in August 2023 (IRAS 322303; REC reference 23/EE/0124).
+More information can be found in the companion paper \url{https://zenodo.org/records/13691320}.
 
 \subsection{Quantitative research}
 
-\subsubsection{Quantitative research: Data for thrombolysis use}
+\subsubsection{Data for models}
 
-Data was extracted from the Sentinel Stroke National Audit Programme (SSNAP), the national stroke registry for England, Wales and Northern Ireland, for all patients with an out-of-hospital stroke onset for the full calendar years of 2016-2021. The registry contains  patients admitted to all acutely-admitting hospitals, with a case ascertainment of over 90\% when compared to administrative data (Hospital Episode Statistics).
+All of the models used data extracted from the Sentinel Stroke National Audit Programme (SSNAP), the national stroke registry for England, Wales and Northern Ireland. SSNAP contains patients admitted to all acutely-admitting hospitals in England and Wales, with a case ascertainment of over 90\% when compared to administrative data (Hospital Episode Statistics). Data is used for patients with an out-of-hospital stroke onset that arrived at an acute stroke team (with at least 250 stroke admissions, and which delivered thrombolysis to at least 10 patients in the study period) in England and Wales by ambulance after their stroke onset.
 
-For the The total number of patients was 360,381, of whom 38.5\% arrived within 4 hours of known stroke onset. Of those arriving within 4 hours of known stroke onset 90.4\% arrived by ambulance (71.6\% of those not arriving within 4 hours of known stroke onset arrived by ambulance).
+\subsection{Models}
 
-The following data fields from SSNAP were used in the modelling:
+Models for three purposes were used. Here we will describe each briefly, with further information available in their companion papers:
 
-\begin{itemize}
-
-% Coding 0-1 for Yes/No not needed here
-
-    \item \textit{Stroke team}: Stroke team attended (hospital identifier).
-
-    \item \textit{Age}: Age (as midpoint of 5 year age bands).
-
-    \item \textit{Sex}: Sex of patient. % Keep as 'sex'; 'gender' more about psychological identity/alignment than physical/biological attributes
-
-    \item \textit{Atrial fibrillation diagnosis}: Patient had a diagnosis of atrial fibrillation, either on arrival or diagnosed during admission.
-
-    \item \textit{Use of atrial fibrillation (AF) anticoagulants}: Use of prior anticoagulant for atrial fibrillation.
-
-    \item \textit{Onset known}: Whether onset was known, and if known whether it was considered to be known precisely or was a best estimate.
-
-    \item \textit{Onset during sleep}: Did stroke occur in sleep?
-
-    \item \textit{Onset-to-arrival time}: Time from onset of stroke to arrival at hospital (minutes), when known.
-
-    \item \textit{Prior disability level}: Estimated mRS score prior to stroke.
-
-    \item \textit{Stroke type}: Infarction/haemorrhage.
-
-    \item \textit{Stroke severity}: National Institutes of Health Stroke Scale (NIHSS) score on arrival.
-
-    \item \textit{Arrival-to-scan time}: Time from arrival at hospital to scan (minutes), when known.
-
-    \item \textit{Scan-to-thrombolysis time}: Time from arrival at hospital to scan to treatment with thrombolysis (minutes), when given.
-
-    \item \textit{Disability on discharge}: mRS (0-6) on discharge, includes death (mRS 6) during admission.
-    
-\end{itemize}
-
-\subsubsection{Quantitative research: Data for patient clinical outcome}
+\textbf{Thrombolysis decision} machine learning model: We used XGBoost \cite{chen_xgboost_2016} models based on Pearn el al (2023) \cite{pearn_what_2023} to predict thrombolysis use based on the ten sequentially most influential features (using sequential feature selection and clinical expertise) that describe the patients characteristics, hospital attended, and pathway processes. The model learns which patients would likely be given thrombolysis at each stroke team.
 
 
+The thrombolysis decision model has been described in more detail previously\cite{pearn_what_2023}. Feature selection was used to identify 10 key features that were most predictive of whether thrombolysis was used in any given stroke team. The model uses XGBoost for predictions, and SHAP for local (patient-level) and global (model/population-level) explainability. The 10 features used for predicting thrombolysis use were: Stroketeam; Age; Precisely known onset time; Onset during sleep; Onset-to-arrival time; Arrival-to-scan time; Stroke type;Stroke severity; Prior disability level; Use of anticoagulants. The thrombolysis decision model was applied only to patients arriving within 4 hours of known stroke onset (strokeonset was known precisely or was a best estimate). 
 
-\subsubsection{Quantitative research: Predicting thrombolysis use}
+\textbf{Thrombolysis outcome} machine learning models: The machine learning model predicting disability/death at discharge (mRS) is described in more detail in a companion paper \cite{pearn_are_2024}. Briefly, we used XGBoost \cite{chen_xgboost_2016} to predict outcome at discharge (using modified Rankin Scale, mRS, to describe the level of disability including death) based on the seven sequentially most influential features (using sequential feature selection and clinical expertise) that describe the patients characteristics, hospital attended, pathway processes and use/time to thrombolysis. To train a model to predict outcome from thrombolysis alone, we excluded any patient who had received thrombectomy. We trained two versions of this model, to predict two different representations of the mRS score at discharge: 
+\begin{enumerate}
+    \item a \textbf{multiclass} classification XGBoost model that predicts a probability distribution across the seven mRS levels
+    \item a set of six independent XGBoost models to predict the likelihood of a patient attaining any given \textbf{mRS threshold} at discharge (for each mRS threshold, we refer to being at or lower than that threshold as a \textit{'same or better}' or '\textit{good outcome}'). 
+\end{enumerate}
 
-Decision-making (choice of thrombolysis) were modelled with machine learning, learning which patients would likely be given thrombolysis at each stroke team.
+\textbf{Acute stroke pathway} model: The acute stroke pathway model has been described in more detail in the companion paper \cite{pearn_identifying_2024}. Briefly, we model processes, including variation, using a Monte Carlo simulation model of the acute stroke pathway, at each hospital in England and Wales, from stroke onset through to disability at discharge. Process flow was modelled by sampling from distributions of historic flow for each stroke team, and machine learning models were used to decide whether the patient received thrombolysis \cite{pearn_what_2023} and to predict the patient clinical outcome (predicting disability/death at discharge) \cite{pearn_are_2024}). The model predicts thrombolysis use and times for a year’s admission to each stroke team (100 replicates are run, simulating 100 years admissions).
+
+Code, with demonstration, is available at \url{https://github.com/samuel-book/samuel_2_demo}.
+
+\subsubsection{Model accuracy}
+
+Each of the XGBoost models were trained using stratified 5-fold cross-validation to test the accuracy of the model, for feature selection, and to test reproducibility of patterns detected (in 5-fold cross validation the data is split into 5 different 80:20 train/test splits with each patient being in one, and only one, test set). The results from the model fitted on the first k-fold split were used to investigate the relationships between feature values and their contribution to the prediction.
+
+\subsubsection{Explainable models}
+
+We sought to make our XGBoost machine learning models explainable using SHAP (SHapley Additive exPlanation) values \cite{lundberg_unified_2017}. SHAP values show the contribution of each feature value to the final model predictions. SHAP values, expressed as log-odds, are additive; the final model log-odds prediction for an individual is the sum of all its feature SHAP values and the models baseline SHAP value, which is common across all individual predictions. SHAP values can be assessed \textit{locally} at patient level, and \textit{globally} at patient cohort level to understand general patterns of how the target feature differs by each of the patient, pathway, and hospital characteristics. We also illustrated our pathway model using \textit{prototype} patients which vary patient characteristics in a controlled way. These prototype patients captured a range of features known to affect decisions to treat, and to affect outcomes, and included an \textit{ideal} candidate for thrombolysis. The prototype patients used were:
+
+\begin{enumerate}
+    \item \textit{Ideal}: Onset-to-arrival = 90 minutes; arrival-to-scan = 15 minutes; onset-to-thrombolysis = 120 minutes; stroke severity (NIHSS) = 15; pre-stroke disability (mRS) = 0; age = 72.5; precisely known onset; onset not during sleep; stroke type = infarction; patient has no atrial fibrillation and is not receiving anticoagulants for atrial fibrillation.
+
+    \item \textit{Late arrival}: As \textit{ideal} but onset-to-arrival = 225 minutes and onset-to-thrombolysis (when given) = 255 minutes.
+
+    \item \textit{Mild}: As \textit{ideal} but stroke severity = 3.
+
+    \item \textit{Prior disability}: As \textit{ideal} but pre-stroke disability = 3
+
+    \item \textit{Imprecise}: As \textit{ideal} but stroke onset time estimated.
+
+    \item \textit{Age}: As \textit{ideal} but age = 87.5.
+
+    \item Combinations of the above.
+\end{enumerate}
 
 
-\subsubsection{Quantitative research: Predicting patient clinical outcome}
+\subsubsection{Counterfactual treatment}
 
-Patient outcomes were modelled with machine learning, predicting their disability at discharge.
+To predict if a patient would be likely to have a better outcome with, or without, thrombolysis, we used the \textit{thrombolysis outcome multiclass} model to calculate the counterfactual outcome for each treatment option (with and without thrombolysis) for the patients in the test set (so not used to train the model). We represented patients as receiving thrombolysis by setting the feature \textit{onset to thrombolysis time} to the sum of the recorded pathway durations for the patient (\textit{onset to arrival} and \textit{arrival to scan}) and added on the median \textit{scan to thrombolysis time} of their attended hospital. The median \textit{onset to thrombolysis time} for the 15,680 patients is 162 minutes (range 27 to 316 minutes). We represented patients as not receiving thrombolysis by setting the feature \textit{onset to treatment time} to 9,999 minutes. We translated the resulting two predicted probability distributions of disability at discharge (with and without thrombolysis) into a binary feature to represent whether the patient was predicted to have a better outcome receiving thrombolysis. We used a conservative definition to determine whether a patient has a better outcome with treatment from the two probability distributions, where both of these criteria must be met: 
 
+\begin{enumerate}
+    \item A reduction in probability-weighted mRS (a measure of the mid-point location of disability; it is the sum of each mRS outcome multiplied by the probability of that outcome occurring).
+    \item A reduction in the likelihood of a very bad outcome (mRS 5-6, complete dependency or death).
+\end{enumerate}
 
-\subsubsection{Quantitative research: Ethics}
+\subsubsection{Hospital trade-off between maximising benefit from thrombolysis and minimising risk of harm from thrombolysis}
 
-For modelling, as we were using anonymised secondary data, collected for national audit, individual consent is not required. SSNAP has approval under section 251 of the NHS Health and Social Care Act (2006) to collect patient level data on the first six months of patient care (ECC 6- 02(FT3)/2012), without requiring individual patient consent. Access to SSNAP data is managed by the UK Healthcare Quality Improvement Partnership (HQIP), with this project being approved by HQIP (HQIP303). More information on the use of patient data by SSNAP can be found at \url{https://www.strokeaudit.org/ SupportFiles/Documents/Patient-area-documents/Fair-processingstatement-for-patients-v7-0.aspx}
+We used a XGBoost \textit{thrombolysis decision} model to predict the thrombolysis decision of each of the patients in the test set at each of the 111 stroke teams (by setting their feature \textit{stroke team} value to each of the stroke teams in turn). We used the \textit{thrombolysis outcome multiclass} model to predict the two mRS distributions at discharge (with and without treatment) for each of patients, and translated this into a binary feature to represent whether the patient was predicted to have a better outcome receiving thrombolysis. To remove the affect that hospital attended has on patient outcome at discharge, we predicted outcomes at a hospital with the most neutral contribution to outcomes. To compare maximising benefit from thrombolysis and avoiding potential harm from thrombolysis we defined measures for \textit{sensitivity} and \textit{specificity} of treatment. \textit{Sensitivity} was calculated as the proportion of patients who were predicted to benefit from thrombolysis (from the \textit{thrombolysis outcome multiclass} model) who were predicted to receive thrombolysis at each team (from the \textit{thrombolysis decision} model). \textit{Specificity} was calculated as the proportion of patients who were predicted not to benefit from thrombolysis (from the \textit{thrombolysis outcome multiclass} model) who were not predicted to receive thrombolysis at each team (from the \textit{thrombolysis decision} model). A low \textit{sensitivity} would indicate a higher likelihood of not treating people who would benefit from thrombolysis, and a low \textit{specificity} would indicate a higher likelihood of treating people who would not benefit from thrombolysis.
 
-As we are using anonymised secondary data, collected for national audit, used for service evaluation and improvement, no ethical approval is required (confirmed using the NHS Health Research Authority decision aid: https://www.hra-decisiontools.org.uk/ethics/).
+\subsubsection{Ethics}
+
+Qualitative research: NHS Health Research Authority (HRA) \& Health and Care Research Wales (HCRW) approval was provided by the Essex Research Ethics Committee in August 2023 (IRAS 322303; REC reference 23/EE/0124). Quantitative research: As the models used anonymised secondary data, collected for national audit, used for service evaluation and improvement, no ethical approval is required (confirmed using the NHS Health Research Authority decision aid: https://www.hra-decisiontools.org.uk/ethics/).
