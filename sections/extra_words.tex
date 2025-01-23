@@ -35,6 +35,38 @@ Figure 2 shows the relationship between patient level feature values and their o
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+METHODS
+
+\subsubsection{Counterfactual treatment}
+
+To predict if a patient would be likely to have a better outcome with, or without, thrombolysis, we used the \textit{thrombolysis outcome multiclass} model to calculate the counterfactual outcome for each treatment option (with and without thrombolysis) for the patients in the test set (so not used to train the model). We represented patients as receiving thrombolysis by setting the feature \textit{onset to thrombolysis time} to the sum of the recorded pathway durations for the patient (\textit{onset to arrival} and \textit{arrival to scan}) and added on the median \textit{scan to thrombolysis time} of their attended hospital. We represented patients as not receiving thrombolysis by setting the feature \textit{onset to treatment time} to 9,999 minutes. 
+
+
+\subsubsection{Better outcome with treatment definition}
+
+We translated the resulting two predicted probability distributions of disability at discharge (with and without thrombolysis) into a binary feature to represent whether the patient was predicted to have a better outcome receiving thrombolysis. We used a conservative definition to determine whether a patient has a better outcome with treatment from the two probability distributions, where both of these criteria must be met: 
+
+\begin{enumerate}
+    \item A reduction in probability-weighted mRS (a measure of the mid-point location of disability; it is the sum of each mRS outcome multiplied by the probability of that outcome occurring).
+    \item A reduction in the likelihood of a very bad outcome (mRS 5-6, complete dependency or death).
+\end{enumerate}
+
+
+
+We used a conservative definition to predict whether a patient has a better outcome with treatment, by translating the two probability distributions for patient outcome from the \textit{thrombolysis outcome multiclass} model (with, and without thrombolysis), into a binary feature (better with treatment, or not). The patient was predicted to have a better outcome receiving thrombolysis if both of these criteria are met: 
+
+\begin{enumerate}
+    \item A reduction in probability-weighted mRS (a measure of the mid-point location of disability; it is the sum of each mRS outcome multiplied by the probability of that outcome occurring).
+    \item A reduction in the likelihood of a very bad outcome (mRS 5-6, complete dependency or death).
+\end{enumerate}
+
+
+METHODS
+
+\subsubsection{Hospital trade-off between maximising benefit from thrombolysis and minimising risk of harm from thrombolysis}
+
+We used the XGBoost \textit{thrombolysis decision} model to predict the thrombolysis decision of each of the patients in the test set at each of the stroke teams (by setting their feature \textit{stroke team} value to each of the stroke teams in turn). We used the \textit{thrombolysis outcome multiclass} model to predict the two mRS distributions at discharge (with and without treatment) for each of patients, and translated this into a binary feature to represent whether the patient was predicted to have a better outcome receiving thrombolysis. To remove the affect that hospital attended has on patient outcome at discharge, we predicted outcomes at a hospital with the most neutral contribution to outcomes. To compare maximising benefit from thrombolysis and avoiding potential harm from thrombolysis we defined measures for \textit{sensitivity} and \textit{specificity} of treatment. \textit{Sensitivity} was calculated as the proportion of patients who were predicted to benefit from thrombolysis (from the \textit{thrombolysis outcome multiclass} model) who were predicted to receive thrombolysis at each team (from the \textit{thrombolysis decision} model). \textit{Specificity} was calculated as the proportion of patients who were predicted not to benefit from thrombolysis (from the \textit{thrombolysis outcome multiclass} model) who were not predicted to receive thrombolysis at each team (from the \textit{thrombolysis decision} model). A low \textit{sensitivity} would indicate a higher likelihood of not treating people who would benefit from thrombolysis, and a low \textit{specificity} would indicate a higher likelihood of treating people who would not benefit from thrombolysis.
+
 
 METHODS
 
